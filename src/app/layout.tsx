@@ -1,9 +1,13 @@
 import { Metadata } from 'next';
+import { Figtree, Inter } from 'next/font/google';
 import * as React from 'react';
+import { Toaster } from 'react-hot-toast';
 
 import '@/styles/globals.css';
 // !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
 import '@/styles/colors.css';
+
+import Providers from '@/components/providers';
 
 import { siteConfig } from '@/constant/config';
 
@@ -49,14 +53,33 @@ export const metadata: Metadata = {
   // ],
 };
 
+const figtree = Figtree({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+  variable: '--font-figtree',
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+  variable: '--font-inter',
+});
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html>
-      <body>{children}</body>
+    <html className={`${figtree.variable} ${inter.variable}`}>
+      <body>
+        <Providers>
+          {children}
+          <Toaster position='top-right' />
+        </Providers>
+      </body>
     </html>
   );
 }
