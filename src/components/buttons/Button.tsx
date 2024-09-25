@@ -5,7 +5,14 @@ import { ImSpinner2 } from 'react-icons/im';
 
 import { cn } from '@/lib/utils';
 
-const ButtonVariant = ['primary', 'outline', 'ghost', 'light', 'dark'] as const;
+const ButtonVariant = [
+  'primary',
+  'outline',
+  'ghost',
+  'light',
+  'dark',
+  'danger',
+] as const;
 const ButtonSize = ['sm', 'base'] as const;
 
 type ButtonProps = {
@@ -46,7 +53,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         type='button'
         disabled={disabled}
         className={cn(
-          'inline-flex items-center rounded font-medium',
+          'inline-flex items-center rounded font-medium font-figtree',
           'focus-visible:ring-primary-500 focus:outline-none focus-visible:ring',
           'shadow-sm',
           'transition-colors duration-75',
@@ -59,11 +66,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           //#region  //*=========== Variants ===========
           [
             variant === 'primary' && [
-              'bg-primary-500 text-white',
+              'bg-primary text-white',
               'border-primary-600 border',
-              'hover:bg-primary-600 hover:text-white',
-              'active:bg-primary-700',
-              'disabled:bg-primary-700',
+              'hover:bg-primary/60 hover:text-white',
+              'active:bg-primary/70',
+              'disabled:bg-primary/20',
             ],
             variant === 'outline' && [
               'text-primary-500',
@@ -78,6 +85,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               'hover:bg-primary-50 active:bg-primary-100 disabled:bg-primary-100',
               isDarkBg &&
                 'hover:bg-gray-900 active:bg-gray-800 disabled:bg-gray-800',
+            ],
+            variant === 'danger' && [
+              'text-white bg-primary-red',
+              'shadow-none',
+              'hover:bg-primary-red/60 hover:text-white active:bg-primary-red/70 disabled:bg-primary-red/60',
             ],
             variant === 'light' && [
               'bg-white text-gray-700',
