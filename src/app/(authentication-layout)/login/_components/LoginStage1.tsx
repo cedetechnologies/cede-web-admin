@@ -4,9 +4,9 @@ import Link from 'next/link';
 import Button from '@/components/buttons/Button';
 import { Input } from '@/components/input';
 
-import { LoginIds } from '@/app/(authentication-layout)/signup/_utils/loginConstants';
-import { multiStepVariants } from '@/app/(authentication-layout)/signup/_utils/loginVariants';
-import useLoginStage1 from '@/app/(authentication-layout)/signup/_utils/useLoginStage1';
+import { LoginIds } from '@/app/(authentication-layout)/login/_utils/loginConstants';
+import { multiStepVariants } from '@/app/(authentication-layout)/login/_utils/loginVariants';
+import useLoginStage1 from '@/app/(authentication-layout)/login/_utils/useLoginStage1';
 
 export default function LoginStage1() {
   const { formik, getInputProps } = useLoginStage1();

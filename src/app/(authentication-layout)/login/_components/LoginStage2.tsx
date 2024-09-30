@@ -7,10 +7,10 @@ import Button from '@/components/buttons/Button';
 
 import { useAppSelector } from '@/store';
 
-import CountdownTimer from '@/app/(authentication-layout)/signup/_components/CountdownTimer';
-import { LoginIds } from '@/app/(authentication-layout)/signup/_utils/loginConstants';
-import { multiStepVariants } from '@/app/(authentication-layout)/signup/_utils/loginVariants';
-import useLoginStage2 from '@/app/(authentication-layout)/signup/_utils/useLoginStage2';
+import CountdownTimer from '@/app/(authentication-layout)/login/_components/CountdownTimer';
+import { LoginIds } from '@/app/(authentication-layout)/login/_utils/loginConstants';
+import { multiStepVariants } from '@/app/(authentication-layout)/login/_utils/loginVariants';
+import useLoginStage2 from '@/app/(authentication-layout)/login/_utils/useLoginStage2';
 import { handleErrors } from '@/utils/error';
 
 export default function LoginStage2() {

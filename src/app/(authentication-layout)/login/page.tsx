@@ -9,8 +9,8 @@ import IconButton from '@/components/buttons/IconButton';
 
 import { useAppDispatch, useAppSelector } from '@/store';
 
-import LoginStage1 from '@/app/(authentication-layout)/signup/_components/LoginStage1';
-import LoginStage2 from '@/app/(authentication-layout)/signup/_components/LoginStage2';
+import LoginStage1 from '@/app/(authentication-layout)/login/_components/LoginStage1';
+import LoginStage2 from '@/app/(authentication-layout)/login/_components/LoginStage2';
 import {
   LOGIN_STAGE_ONE,
   LOGIN_STAGE_TWO,
