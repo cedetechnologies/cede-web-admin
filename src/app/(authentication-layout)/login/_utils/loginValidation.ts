@@ -1,6 +1,6 @@
 import { object, string } from 'yup';
 
-import { LoginIds } from '@/app/(authentication-layout)/signup/_utils/loginConstants';
+import { LoginIds } from '@/app/(authentication-layout)/login/_utils/loginConstants';
 
 export const loginStage1Schema = object({
   [LoginIds.Email]: string()

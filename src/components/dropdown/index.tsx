@@ -223,7 +223,7 @@ const Dropdown = ({
             <LeftIcon size='1em' className={cn('')} />
           </div>
         )}
-        <span>{currentValue ?? label}</span>
+        <span>{currentValue || label}</span>
         <span
           className={cn('ml-auto text-[#757679] transition-all duration-300', [
             isDropdownOpen && '-rotate-180',

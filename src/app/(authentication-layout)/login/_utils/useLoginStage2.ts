@@ -8,8 +8,8 @@ import { useAppDispatch, useAppSelector } from '@/store';
 import {
   LoginIds,
   loginStage2InitialValues,
-} from '@/app/(authentication-layout)/signup/_utils/loginConstants';
-import { loginStage2Schema } from '@/app/(authentication-layout)/signup/_utils/loginValidation';
+} from '@/app/(authentication-layout)/login/_utils/loginConstants';
+import { loginStage2Schema } from '@/app/(authentication-layout)/login/_utils/loginValidation';
 import { resetLogin, setOtp } from '@/slices/loginSlice';
 import { handleErrors } from '@/utils/error';
 

@@ -3,8 +3,8 @@ import { useMemo } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/store';
 
-import { loginStage1InitialValues } from '@/app/(authentication-layout)/signup/_utils/loginConstants';
-import { loginStage1Schema } from '@/app/(authentication-layout)/signup/_utils/loginValidation';
+import { loginStage1InitialValues } from '@/app/(authentication-layout)/login/_utils/loginConstants';
+import { loginStage1Schema } from '@/app/(authentication-layout)/login/_utils/loginValidation';
 import {
   LOGIN_STAGE_TWO,
   setEmailAndPassword,

@@ -47,32 +47,32 @@
 
   /* #region  /**=========== Typography =========== */
   .h0 {
-    @apply font-primary text-3xl font-bold md:text-5xl;
+    @apply font-figtree text-3xl font-bold md:text-5xl text-primary-black;
   }
 
   h1,
   .h1 {
-    @apply font-primary text-2xl font-bold md:text-4xl;
+    @apply font-figtree text-2xl font-bold md:text-4xl text-primary-black;
   }
 
   h2,
   .h2 {
-    @apply font-primary text-xl font-bold md:text-3xl;
+    @apply font-figtree text-xl font-bold md:text-3xl text-primary-black;
   }
 
   h3,
   .h3 {
-    @apply font-primary text-lg font-bold md:text-2xl;
+    @apply font-figtree text-lg font-bold md:text-2xl text-primary-black;
   }
 
   h4,
   .h4 {
-    @apply font-primary text-base font-bold md:text-lg;
+    @apply font-figtree text-base font-bold md:text-lg text-primary-black;
   }
 
   body,
   .p {
-    @apply font-primary text-sm md:text-base;
+    @apply font-figtree text-sm md:text-base text-primary-black;
   }
   /* #endregion  /**======== Typography =========== */
 
