@@ -6,20 +6,27 @@ import { persistReducer, persistStore } from 'redux-persist';
 import storage from '@/store/customStorage';
 
 import {
+  BLACKLIST_USER_REDUCER_PATH,
   GLOBAL_API_REDUCER_PATH,
   LOGIN_REDUCER_PATH,
 } from '@/constant/appConstants';
+import { blacklistReducer } from '@/slices/blacklistUser';
 import { loginReducer } from '@/slices/loginSlice';
 
 const persistConfig = {
   key: 'root',
   storage: storage,
-  blacklist: [GLOBAL_API_REDUCER_PATH, LOGIN_REDUCER_PATH],
+  blacklist: [
+    GLOBAL_API_REDUCER_PATH,
+    LOGIN_REDUCER_PATH,
+    BLACKLIST_USER_REDUCER_PATH,
+  ],
 };
 
 const rootReducer = combineReducers({
   // [globalApi.reducerPath]: globalApi.reducer,
   [LOGIN_REDUCER_PATH]: loginReducer,
+  [BLACKLIST_USER_REDUCER_PATH]: blacklistReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

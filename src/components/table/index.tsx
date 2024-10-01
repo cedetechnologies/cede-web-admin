@@ -12,7 +12,7 @@ import TableLoader from '@/components/table-loader';
 type TableContainerProps = {
   children?: ReactNode;
   tableHeadClass?: string;
-  headers: string[];
+  headers: Array<string | ReactNode>;
   alignHeader?: 'left' | 'right' | 'center';
   totalPages?: number;
   limit?: number;
