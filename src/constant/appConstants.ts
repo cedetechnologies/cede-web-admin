@@ -21,6 +21,7 @@ export const PATCH_METHOD = 'PATCH';
 export const FORGOT_PASSWORD_REDUCER_PATH = 'forgot_password' as const;
 // FORGOT PASSWORD REDUCER PATH END
 export const LOGIN_REDUCER_PATH = 'login' as const;
+export const BLACKLIST_USER_REDUCER_PATH = 'blacklistUser' as const;
 
 export const CURRENCY_FROM_QUERY_KEY = 'currencyFrom';
 export const CURRENCY_TO_QUERY_KEY = 'currencyTo';

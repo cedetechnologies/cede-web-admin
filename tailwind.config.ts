@@ -40,6 +40,7 @@ export default {
           yellow: '#FEA53914',
         },
 
+        'neutral-green': '#34C759',
         grey: '#D9D9D9',
         'bg-grey': '#FAFAFA',
         'light-grey': '#949494',

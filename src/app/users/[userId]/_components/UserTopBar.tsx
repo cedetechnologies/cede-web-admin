@@ -1,24 +1,15 @@
-'use client';
-
 import { FiHeadphones } from 'react-icons/fi';
 import { GoBell } from 'react-icons/go';
 
-import { useGetActivePath } from '@/hooks/useCheckLinkActive';
-
 import IconButton from '@/components/buttons/IconButton';
 
-const TopBar = () => {
-  const { path } = useGetActivePath(1);
+import CedeLogo from '@/app/(authenticated-layout)/_components/_sidebar/CedeLogo';
 
-  const headerMap: Record<string, string> = {
-    '': 'Overview',
-    users: 'Manage users',
-  };
-
+const UserTopBar = () => {
   return (
     <>
-      <div className='border-primary-grey relative flex items-center justify-between border-b-[0.5px] bg-white px-10 py-6'>
-        <p className='font-semibold text-2xl'>{headerMap[path]}</p>
+      <div className='border-primary-grey relative flex items-center justify-between border-b-[0.5px] bg-white px-10 py-4'>
+        <CedeLogo />
         <div className='relative flex items-center gap-4'>
           <IconButton
             variant='ghost'
@@ -37,4 +28,4 @@ const TopBar = () => {
   );
 };
 
-export default TopBar;
+export default UserTopBar;
