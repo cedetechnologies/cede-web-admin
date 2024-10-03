@@ -9,9 +9,11 @@ import {
   BLACKLIST_USER_REDUCER_PATH,
   GLOBAL_API_REDUCER_PATH,
   LOGIN_REDUCER_PATH,
+  TRANSACTION_DETAILS_REDUCER_PATH,
 } from '@/constant/appConstants';
 import { blacklistReducer } from '@/slices/blacklistUser';
 import { loginReducer } from '@/slices/loginSlice';
+import { transactionDetailsReducer } from '@/slices/transactionDetailsSlice';
 
 const persistConfig = {
   key: 'root',
@@ -20,6 +22,7 @@ const persistConfig = {
     GLOBAL_API_REDUCER_PATH,
     LOGIN_REDUCER_PATH,
     BLACKLIST_USER_REDUCER_PATH,
+    TRANSACTION_DETAILS_REDUCER_PATH,
   ],
 };
 
@@ -27,6 +30,7 @@ const rootReducer = combineReducers({
   // [globalApi.reducerPath]: globalApi.reducer,
   [LOGIN_REDUCER_PATH]: loginReducer,
   [BLACKLIST_USER_REDUCER_PATH]: blacklistReducer,
+  [TRANSACTION_DETAILS_REDUCER_PATH]: transactionDetailsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

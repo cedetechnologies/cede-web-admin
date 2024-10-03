@@ -13,6 +13,7 @@ const TopBar = () => {
   const headerMap: Record<string, string> = {
     '': 'Overview',
     users: 'Manage users',
+    transactions: 'Manage transactions',
   };
 
   return (

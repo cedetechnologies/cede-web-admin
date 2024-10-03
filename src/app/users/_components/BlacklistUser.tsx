@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { BsIncognito } from 'react-icons/bs';
 import { IoMdClose } from 'react-icons/io';
 
@@ -9,6 +10,7 @@ import { ModalProps } from '@/components/modal';
 
 import { useAppDispatch } from '@/store';
 
+import { multiStepVariants } from '@/app/(authentication-layout)/login/_utils/loginVariants';
 import {
   BLACKLIST_SUCCESS_STAGE,
   setBlacklistUserStage,
@@ -22,7 +24,13 @@ export default function BlacklistUser({ isMultiple, ...props }: Props) {
   const dispatch = useAppDispatch();
 
   return (
-    <section className='h-full w-full bg-white flex flex-col'>
+    <motion.div
+      variants={multiStepVariants}
+      initial='initial'
+      exit='exit'
+      animate='animate'
+      className='h-full w-full bg-white flex flex-col'
+    >
       <div className='flex justify-end mb-7'>
         <IconButton
           variant='ghost'
@@ -64,6 +72,6 @@ export default function BlacklistUser({ isMultiple, ...props }: Props) {
       >
         Cancel
       </Button>
-    </section>
+    </motion.div>
   );
 }
