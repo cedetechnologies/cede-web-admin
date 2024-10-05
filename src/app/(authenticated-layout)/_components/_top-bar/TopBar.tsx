@@ -9,6 +9,7 @@ import IconButton from '@/components/buttons/IconButton';
 
 const TopBar = () => {
   const { path } = useGetActivePath(1);
+  const { path: nestedPath } = useGetActivePath(2);
 
   const headerMap: Record<string, string> = {
     '': 'Overview',
@@ -16,10 +17,16 @@ const TopBar = () => {
     transactions: 'Manage transactions',
   };
 
+  const nestedPathHeaderMap: Record<string, string> = {
+    rates: 'Manage Rates',
+  };
+
   return (
     <>
       <div className='border-primary-grey relative flex items-center justify-between border-b-[0.5px] bg-white px-10 py-6'>
-        <p className='font-semibold text-2xl'>{headerMap[path]}</p>
+        <p id='page-heading' className='font-semibold text-2xl'>
+          {nestedPathHeaderMap[nestedPath] ?? headerMap[path]}
+        </p>
         <div className='relative flex items-center gap-4'>
           <IconButton
             variant='ghost'
