@@ -7,11 +7,13 @@ import storage from '@/store/customStorage';
 
 import {
   BLACKLIST_USER_REDUCER_PATH,
+  EDIT_EXCHANGE_RATE_REDUCER_PATH,
   GLOBAL_API_REDUCER_PATH,
   LOGIN_REDUCER_PATH,
   TRANSACTION_DETAILS_REDUCER_PATH,
 } from '@/constant/appConstants';
 import { blacklistReducer } from '@/slices/blacklistUser';
+import { editExchangeRateReducer } from '@/slices/editExchangeRateSlice';
 import { loginReducer } from '@/slices/loginSlice';
 import { transactionDetailsReducer } from '@/slices/transactionDetailsSlice';
 
@@ -23,6 +25,7 @@ const persistConfig = {
     LOGIN_REDUCER_PATH,
     BLACKLIST_USER_REDUCER_PATH,
     TRANSACTION_DETAILS_REDUCER_PATH,
+    EDIT_EXCHANGE_RATE_REDUCER_PATH,
   ],
 };
 
@@ -31,6 +34,7 @@ const rootReducer = combineReducers({
   [LOGIN_REDUCER_PATH]: loginReducer,
   [BLACKLIST_USER_REDUCER_PATH]: blacklistReducer,
   [TRANSACTION_DETAILS_REDUCER_PATH]: transactionDetailsReducer,
+  [EDIT_EXCHANGE_RATE_REDUCER_PATH]: editExchangeRateReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

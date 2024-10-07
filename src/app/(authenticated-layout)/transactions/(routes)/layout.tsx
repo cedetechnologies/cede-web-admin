@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { PropsWithChildren } from 'react';
 
 import Button from '@/components/buttons/Button';
@@ -34,7 +35,12 @@ export default function TransactionsLayout({ children }: PropsWithChildren) {
             <p className='font-semibold text-2xl'>Exchange rates</p>
             <p className='text-sm text-light-grey'>Updated 25 mins ago</p>
           </div>
-          <Button className='py-[10px] px-10 rounded-[8px]'>Manage</Button>
+          <Link
+            href='/transactions/rates'
+            className='py-[10px] px-10 rounded-[8px] bg-primary-blue text-white'
+          >
+            Manage
+          </Link>
         </div>
 
         <div className='my-8'>
