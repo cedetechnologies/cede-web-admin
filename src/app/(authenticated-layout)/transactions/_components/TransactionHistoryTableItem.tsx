@@ -28,7 +28,11 @@ import IconButton from '@/components/buttons/IconButton';
 </div>; */
 }
 
-export default function TransactionTableItem() {
+type Props = {
+  openDetails: () => void;
+};
+
+export default function TransactionHistoryTableItem({ openDetails }: Props) {
   return (
     <tr className='text-sm text-tertiary-grey'>
       <td>
@@ -67,7 +71,11 @@ export default function TransactionTableItem() {
         <p className='font-medium text-primary-black'>ONE TIME</p>
       </td>
       <td>
-        <IconButton icon={GoKebabHorizontal} variant='ghost' />
+        <IconButton
+          icon={GoKebabHorizontal}
+          onClick={openDetails}
+          variant='ghost'
+        />
       </td>
     </tr>
   );

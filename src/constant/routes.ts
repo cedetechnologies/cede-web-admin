@@ -3,7 +3,7 @@ export enum Routes {
   SIgnUp = '/signup',
   ForgotPassword = '/forgot-password',
   Home = '/',
-  ManageTransactions = '/history',
+  ManageTransactions = '/transactions',
   ManageUsers = '/users',
   AccountVerification = '/verification',
   Settings = '/settings',

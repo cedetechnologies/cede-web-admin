@@ -8,6 +8,7 @@ const headers = [
   'Beneficiary',
   'Date',
   'Amount',
+  'Account type',
   'Status',
   'Transfer type',
   '',
