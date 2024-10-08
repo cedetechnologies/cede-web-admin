@@ -1,6 +1,7 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
+import { IconType } from 'react-icons';
 import { IoCaretDownOutline } from 'react-icons/io5';
 import PhoneInput, { Value } from 'react-phone-number-input';
 
@@ -13,6 +14,8 @@ import { InputProps } from '@/components/input/types';
 
 type Props = InputProps & {
   handleChange: (value: Value) => void;
+  endIcon?: IconType;
+  iconClassName?: string;
 };
 
 export default function Phone({
@@ -26,6 +29,9 @@ export default function Phone({
   value,
   handleChange,
   required,
+  endIcon: EndIcon,
+  iconClassName,
+  inputClassName,
   ...rest
 }: Props) {
   delete rest.initialError;
@@ -59,11 +65,22 @@ export default function Phone({
             {...rest}
             onChange={handleChange}
             required={required}
-            className='!border-none !outline-none'
+            className={cn('!border-none !outline-none', [
+              inputClassName && inputClassName,
+            ])}
             countrySelectProps={{
               arrowComponent: () => <IoCaretDownOutline />,
             }}
           />
+          {EndIcon && (
+            <div
+              className={cn('pr-2 text-secondary-grey text-lg', [
+                iconClassName && iconClassName,
+              ])}
+            >
+              <EndIcon />
+            </div>
+          )}
         </div>
       </div>
       <AnimatePresence>

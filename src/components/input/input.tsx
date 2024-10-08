@@ -15,6 +15,7 @@ export default function Input({
   className,
   inputClassName,
   containerClassName,
+  iconClassName,
   label,
   touched,
   error,
@@ -24,6 +25,7 @@ export default function Input({
   required,
   helperText,
   startIcon: StartIcon,
+  endIcon: EndIcon,
   ...rest
 }: InputProps) {
   const [hidden, setHidden] = useState<boolean>(true);
@@ -130,6 +132,15 @@ export default function Input({
               )}
               required={required}
             />
+            {EndIcon && (
+              <div
+                className={cn('pr-2 text-secondary-grey text-lg', [
+                  iconClassName && iconClassName,
+                ])}
+              >
+                <EndIcon />
+              </div>
+            )}
           </div>
         )}
       </div>
