@@ -7,6 +7,7 @@ import { CiLogout } from 'react-icons/ci';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { LuUsers2 } from 'react-icons/lu';
 import { RiHome6Fill } from 'react-icons/ri';
+import { TbChartDotsFilled } from 'react-icons/tb';
 
 import { cn } from '@/lib/utils';
 import useDisclosure from '@/hooks/useDisclosure';
@@ -54,12 +55,18 @@ const sideBarLinks: SidebarLinksType[] = [
   },
   {
     id: 4,
+    icon: TbChartDotsFilled,
+    title: 'Rate negotiation',
+    href: Routes.RateNegotiation,
+  },
+  {
+    id: 5,
     icon: BsPatchCheck,
     title: 'Account verification',
     href: Routes.AccountVerification,
   },
   {
-    id: 5,
+    id: 6,
     icon: IoSettingsOutline,
     title: 'Settings',
     href: Routes.Settings,

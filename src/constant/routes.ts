@@ -7,4 +7,5 @@ export enum Routes {
   ManageUsers = '/users',
   AccountVerification = '/verification',
   Settings = '/settings',
+  RateNegotiation = '/rate-negotiation',
 }
