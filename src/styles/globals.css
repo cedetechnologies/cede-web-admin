@@ -142,3 +142,30 @@
     background-size: 0 2px, 100% 2px;
   }
 }
+
+/* phone input */
+.PhoneInputInput {
+  @apply w-full border-0 bg-transparent py-2.5 pr-[20%] text-sm shadow-none outline-none ring-0 placeholder:text-xs placeholder:text-gray-600;
+  @apply focus:ring-0 md:py-3 md:pl-4 md:pr-[15%] md:text-sm md:placeholder:text-sm lg:pr-[8.33%] lg:text-base lg:placeholder:text-base;
+}
+
+.PhoneInput {
+  @apply w-full;
+}
+
+.PhoneInputCountry {
+  @apply px-5 bg-primary-grey rounded-l-[8px] gap-2;
+}
+
+.PhoneInputCountryIconImg {
+  @apply w-5 h-5 object-cover rounded-[100%];
+}
+
+.PhoneInputCountryIcon {
+  @apply !w-5 !h-5;
+}
+
+.PhoneInputCountryIcon--border {
+  @apply !bg-transparent;
+  box-shadow: none !important;
+}

@@ -27,6 +27,8 @@ export const BLACKLIST_USER_REDUCER_PATH = 'blacklistUser' as const;
 export const TRANSACTION_DETAILS_REDUCER_PATH = 'transactionDetails' as const;
 export const EDIT_EXCHANGE_RATE_REDUCER_PATH = 'editExchangeRate' as const;
 export const RATE_DETAILS_REDUCER_PATH = 'rateDetails' as const;
+export const BUSINESS_VERIFICATION_REDUCER_PATH =
+  'businessVerification' as const;
 
 export const CURRENCY_FROM_QUERY_KEY = 'currencyFrom';
 export const CURRENCY_TO_QUERY_KEY = 'currencyTo';

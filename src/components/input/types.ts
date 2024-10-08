@@ -39,11 +39,13 @@ export interface InputProps
     | InputTimeType;
   inputClassName?: string;
   containerClassName?: string;
+  iconClassName?: string;
   initialValue?: string;
   initialTouched?: boolean;
   initialError?: string;
   helperText?: string;
   startIcon?: IconType;
+  endIcon?: IconType;
 }
 
 export type FieldOption = {
