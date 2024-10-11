@@ -17,6 +17,7 @@ const TopBar = () => {
     transactions: 'Manage transactions',
     'rate-negotiation': 'Rate negotiations',
     verification: 'Account Verification',
+    settings: 'Settings',
   };
 
   const nestedPathHeaderMap: Record<string, string> = {

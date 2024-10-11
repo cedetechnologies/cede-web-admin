@@ -37,7 +37,7 @@ export default function SuccessModal({ close, caption }: Props) {
 
         <div className='text-center flex flex-col items-center gap-[10px]'>
           <p className='font-semibold text-2xl'>Success!</p>
-          <p className='text-tertiary-grey text-sm w-3/4'>{caption}</p>
+          <p className='text-tertiary-grey text-sm w-4/5'>{caption}</p>
         </div>
 
         <Button

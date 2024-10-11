@@ -93,7 +93,7 @@ export default function Sidebar() {
         <CedeLogo />
       </div>
 
-      <nav className='mt-8 mb-10'>
+      <nav className='mt-3 mb-9'>
         <ul className='flex flex-col gap-3'>
           {sideBarLinks.map((link) => {
             return <SidebarLink {...link} key={link.id} isOpen={isOpen} />;
@@ -108,19 +108,19 @@ export default function Sidebar() {
           leftIcon={CiLogout}
           variant='ghost'
           onClick={openLogout}
-          className='bg-white text-primary-red font-semibold gap-3 mt-12'
+          className='bg-white text-primary-red font-semibold gap-3 mt-9'
           classNames={{ leftIcon: 'text-3xl' }}
         >
           Log Out
         </Button>
       )}
       {!isOpen && (
-        <div className='text-3xl text-primary-red mt-12 mx-auto w-12'>
+        <div className='text-3xl text-primary-red mt-9 mx-auto w-12'>
           <IconButton icon={CiLogout} variant='ghost' onClick={openLogout} />
         </div>
       )}
 
-      <div className='mt-24 px-3'>
+      <div className='mt-12 px-3'>
         <ProfileLink />
       </div>
 
