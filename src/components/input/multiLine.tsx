@@ -34,9 +34,9 @@ const MultiLine = ({
         </div>
         <div
           className={cn(
-            'flex w-full flex-col rounded-[8px] border text-xs transition-all duration-300 ease-linear md:text-sm lg:text-base',
+            'flex w-full flex-col rounded-[8px] border focus-within:border-primary text-xs transition-all duration-300 ease-linear md:text-sm lg:text-base',
             [
-              variant === 'primary' && 'border-tertiary-grey bg-white',
+              variant === 'primary' && 'border-primary-grey bg-white',
               variant === 'secondary' && 'bg-secondary-grey',
             ],
             [touched && error && 'bg-primary-red/10'],

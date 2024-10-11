@@ -31,6 +31,7 @@ export const BUSINESS_VERIFICATION_REDUCER_PATH =
   'businessVerification' as const;
 export const PROFILE_SETTINGS_REDUCER_PATH = 'profileSettings' as const;
 export const TEAM_SETTINGS_REDUCER_PATH = 'teamSettings' as const;
+export const DELETE_BLOG_REDUCER_PATH = 'deleteBlog' as const;
 
 export const CURRENCY_FROM_QUERY_KEY = 'currencyFrom';
 export const CURRENCY_TO_QUERY_KEY = 'currencyTo';
