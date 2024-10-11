@@ -11,14 +11,18 @@ import {
   EDIT_EXCHANGE_RATE_REDUCER_PATH,
   GLOBAL_API_REDUCER_PATH,
   LOGIN_REDUCER_PATH,
+  PROFILE_SETTINGS_REDUCER_PATH,
   RATE_DETAILS_REDUCER_PATH,
+  TEAM_SETTINGS_REDUCER_PATH,
   TRANSACTION_DETAILS_REDUCER_PATH,
 } from '@/constant/appConstants';
 import { blacklistReducer } from '@/slices/blacklistUser';
 import { businessVerificationReducer } from '@/slices/businessVerificationSlice';
 import { editExchangeRateReducer } from '@/slices/editExchangeRateSlice';
 import { loginReducer } from '@/slices/loginSlice';
+import { profileSettingsReducer } from '@/slices/profleSettingsSlice';
 import { rateDetailsReducer } from '@/slices/rateDetails';
+import { teamSettingsReducer } from '@/slices/teamSettingsSlice';
 import { transactionDetailsReducer } from '@/slices/transactionDetailsSlice';
 
 const persistConfig = {
@@ -32,6 +36,8 @@ const persistConfig = {
     EDIT_EXCHANGE_RATE_REDUCER_PATH,
     RATE_DETAILS_REDUCER_PATH,
     BUSINESS_VERIFICATION_REDUCER_PATH,
+    PROFILE_SETTINGS_REDUCER_PATH,
+    TEAM_SETTINGS_REDUCER_PATH,
   ],
 };
 
@@ -43,6 +49,8 @@ const rootReducer = combineReducers({
   [EDIT_EXCHANGE_RATE_REDUCER_PATH]: editExchangeRateReducer,
   [RATE_DETAILS_REDUCER_PATH]: rateDetailsReducer,
   [BUSINESS_VERIFICATION_REDUCER_PATH]: businessVerificationReducer,
+  [PROFILE_SETTINGS_REDUCER_PATH]: profileSettingsReducer,
+  [TEAM_SETTINGS_REDUCER_PATH]: teamSettingsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
