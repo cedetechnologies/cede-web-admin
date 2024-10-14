@@ -6,28 +6,28 @@ import { PiCaretDownBold } from 'react-icons/pi';
 import { cn } from '@/lib/utils';
 import useOnClickOutside from '@/hooks/useOnClickOutside';
 
-import useFilterTransactions from '@/components/filter/utils/useFilterTransactions';
 import { Input } from '@/components/input';
+
+import useSortTransactions from '@/app/(authenticated-layout)/transactions/_utils/useSortTransactions';
 
 type FilterProps = {
   containerClassName?: string;
   label: string;
 };
 
-const FilterTransactions = ({ containerClassName, label }: FilterProps) => {
+const SortTransactions = ({ containerClassName, label }: FilterProps) => {
   const {
     show,
     setShow,
     handleInputChange,
     fromDate,
     toDate,
-    currency,
-    status,
-    handleRefresh,
+    name,
+    amount,
     close,
     handleOpenTab,
     isTabOpen,
-  } = useFilterTransactions();
+  } = useSortTransactions();
 
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -36,25 +36,20 @@ const FilterTransactions = ({ containerClassName, label }: FilterProps) => {
   //   removeFilter('to_date');
   // };
 
-  const currencies = [
-    { label: 'USD', value: 'USD' },
-    { label: 'EUR', value: 'EUR' },
-    { label: 'CAD', value: 'CAD' },
+  const nameSort = [
+    { label: 'A — Z', value: 'asc' },
+    { label: 'Z — A', value: 'desc' },
   ];
 
-  const transactionStatus = [
-    { label: 'Successful', value: 'successful' },
-    { label: 'Resolved', value: 'resolved' },
-    { label: 'Pending', value: 'pending' },
-    { label: 'Refunded', value: 'refunded' },
-    { label: 'Rejected', value: 'rejected' },
-    { label: 'Failed', value: 'failed' },
+  const amountSort = [
+    { label: 'Lowest to Highest', value: 'lowest' },
+    { label: 'Highest to Lowest', value: 'highest' },
   ];
 
   useOnClickOutside(ref, close);
 
   return (
-    <div className='w-full relative cursor-pointer' ref={ref}>
+    <div className='w-fit relative cursor-pointer' ref={ref}>
       <section className='flex gap-2 items-center md:flex-wrap'>
         <div
           onClick={() => setShow(!show)}
@@ -108,17 +103,16 @@ const FilterTransactions = ({ containerClassName, label }: FilterProps) => {
             </div>
           )}
         </div> */}
-        {toDate || fromDate || currency || status ? (
-          <>
-            <p className='text-[#EEEEEE]'>|</p>
-            <div className='flex gap-1 cursor-pointer' onClick={handleRefresh}>
-              <p className='text-sm font-medium text-[#575757] w-fit'>Reset</p>
-            </div>
-          </>
-        ) : null}
       </section>
       {show && (
-        <div className='absolute text-[#575757] w-[200px] flex flex-col gap-4 bg-[#FFF] py-3 px-5 rounded-lg'>
+        <div className='absolute text-sm min-w-64 justify-between z-[5] -left-[50px] text-[#575757] w-[200px] flex flex-col gap-6 bg-[#FFF] py-3 px-5 rounded-lg'>
+          <div
+            className='flex justify-between items-center'
+            onClick={() => handleOpenTab('name')}
+          >
+            <p>Name</p>
+            <FaAngleRight />
+          </div>
           <div
             className='flex justify-between items-center'
             onClick={() => handleOpenTab('date')}
@@ -128,29 +122,23 @@ const FilterTransactions = ({ containerClassName, label }: FilterProps) => {
           </div>
           <div
             className='flex justify-between items-center'
-            onClick={() => handleOpenTab('currency')}
+            onClick={() => handleOpenTab('amount')}
           >
-            <p>Currency</p>
-            <FaAngleRight />
-          </div>
-          <div
-            className='flex justify-between items-center'
-            onClick={() => handleOpenTab('status')}
-          >
-            <p>Status</p>
+            <p>Amount</p>
             <FaAngleRight />
           </div>
         </div>
       )}
 
       {isTabOpen('date') && (
-        <div className='absolute left-[220px] flex flex-col gap-4 bg-[#FFF] py-3 px-5 rounded-lg w-[300px]'>
+        <div className='absolute right-[200px] flex flex-col gap-4 bg-[#FFF] py-3 px-5 rounded-lg w-[300px]'>
           <Input
             id='from'
             name='from_date'
             type='date'
             label='From'
             onChange={(e) => handleInputChange('from_date', e.target.value)}
+            value={fromDate}
           />
           <Input
             id='to'
@@ -158,13 +146,14 @@ const FilterTransactions = ({ containerClassName, label }: FilterProps) => {
             type='date'
             label='To'
             onChange={(e) => handleInputChange('to_date', e.target.value)}
+            value={toDate}
           />
         </div>
       )}
 
-      {isTabOpen('currency') && (
-        <div className='absolute left-[220px] flex flex-col gap-6 bg-[#FFF] py-5 px-5 rounded-lg w-[300px]'>
-          {currencies.map((el) => (
+      {isTabOpen('name') && (
+        <div className='absolute right-[200px] flex flex-col gap-6 bg-[#FFF] py-5 px-5 rounded-lg w-[300px]'>
+          {nameSort.map((el) => (
             <div key={el.label} className='flex justify-between items-center'>
               <label htmlFor={el.label}>{el.label}</label>
               <input
@@ -172,10 +161,10 @@ const FilterTransactions = ({ containerClassName, label }: FilterProps) => {
                 name='currency'
                 value={el.value}
                 onChange={(e) => {
-                  handleInputChange('currency', e.target.value);
+                  handleInputChange('name', e.target.value);
                   close();
                 }}
-                checked={currency === el.value}
+                checked={name === el.value}
                 type='radio'
                 className='w-5 h-5 cursor-pointer border-gray-300 text-[#EA157F] focus:ring-0 checked:bg-[#EA157F]'
               />
@@ -183,9 +172,9 @@ const FilterTransactions = ({ containerClassName, label }: FilterProps) => {
           ))}
         </div>
       )}
-      {isTabOpen('status') && (
-        <div className='absolute left-[220px] flex flex-col gap-6 bg-[#FFF] py-5 px-5 rounded-lg w-[300px]'>
-          {transactionStatus.map((el) => (
+      {isTabOpen('amount') && (
+        <div className='absolute right-[200px] flex flex-col gap-6 bg-[#FFF] py-5 px-5 rounded-lg w-[300px]'>
+          {amountSort.map((el) => (
             <div key={el.label} className='flex justify-between items-center'>
               <label htmlFor={el.label}>{el.label}</label>
               <input
@@ -193,10 +182,10 @@ const FilterTransactions = ({ containerClassName, label }: FilterProps) => {
                 name={el.label}
                 value={el.value}
                 onChange={(e) => {
-                  handleInputChange('status', e.target.value);
+                  handleInputChange('amount', e.target.value);
                   close();
                 }}
-                checked={status === el.value}
+                checked={amount === el.value}
                 type='radio'
                 className='w-5 h-5 cursor-pointer border-gray-300 text-[#EA157F] focus:ring-0 checked:bg-[#EA157F]'
               />
@@ -208,4 +197,4 @@ const FilterTransactions = ({ containerClassName, label }: FilterProps) => {
   );
 };
 
-export default FilterTransactions;
+export default SortTransactions;

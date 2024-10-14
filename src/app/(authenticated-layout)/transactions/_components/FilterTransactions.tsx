@@ -6,27 +6,30 @@ import { PiCaretDownBold } from 'react-icons/pi';
 import { cn } from '@/lib/utils';
 import useOnClickOutside from '@/hooks/useOnClickOutside';
 
-import useFilterTransactions from '@/components/filter/utils/useFilterTransactions';
-import { Input } from '@/components/input';
+import useFilterTransactions from '@/app/(authenticated-layout)/transactions/_utils/useFilterTransactions';
 
 type FilterProps = {
   containerClassName?: string;
   label: string;
+  isFilteredByStatus?: boolean;
 };
 
-const FilterTransactions = ({ containerClassName, label }: FilterProps) => {
+const FilterTransactions = ({
+  containerClassName,
+  label,
+  isFilteredByStatus,
+}: FilterProps) => {
   const {
     show,
     setShow,
     handleInputChange,
-    fromDate,
-    toDate,
     currency,
     status,
     handleRefresh,
     close,
     handleOpenTab,
     isTabOpen,
+    type,
   } = useFilterTransactions();
 
   const ref = useRef<HTMLDivElement | null>(null);
@@ -51,10 +54,16 @@ const FilterTransactions = ({ containerClassName, label }: FilterProps) => {
     { label: 'Failed', value: 'failed' },
   ];
 
+  const transactionType = [
+    { label: 'One time', value: 'one-time' },
+    { label: 'Scheduled', value: 'scheduled' },
+    { label: 'Recurrent', value: 'recurrent' },
+  ];
+
   useOnClickOutside(ref, close);
 
   return (
-    <div className='w-full relative cursor-pointer' ref={ref}>
+    <div className='w-fit relative cursor-pointer' ref={ref}>
       <section className='flex gap-2 items-center md:flex-wrap'>
         <div
           onClick={() => setShow(!show)}
@@ -108,7 +117,7 @@ const FilterTransactions = ({ containerClassName, label }: FilterProps) => {
             </div>
           )}
         </div> */}
-        {toDate || fromDate || currency || status ? (
+        {type || currency || status ? (
           <>
             <p className='text-[#EEEEEE]'>|</p>
             <div className='flex gap-1 cursor-pointer' onClick={handleRefresh}>
@@ -118,12 +127,12 @@ const FilterTransactions = ({ containerClassName, label }: FilterProps) => {
         ) : null}
       </section>
       {show && (
-        <div className='absolute text-[#575757] w-[200px] flex flex-col gap-4 bg-[#FFF] py-3 px-5 rounded-lg'>
+        <div className='absolute text-sm min-w-64 justify-between z-[5] text-[#575757] w-[200px] flex flex-col gap-6 bg-[#FFF] py-3 px-5 rounded-lg'>
           <div
             className='flex justify-between items-center'
-            onClick={() => handleOpenTab('date')}
+            onClick={() => handleOpenTab('type')}
           >
-            <p>Date</p>
+            <p>Transaction type</p>
             <FaAngleRight />
           </div>
           <div
@@ -133,37 +142,20 @@ const FilterTransactions = ({ containerClassName, label }: FilterProps) => {
             <p>Currency</p>
             <FaAngleRight />
           </div>
-          <div
-            className='flex justify-between items-center'
-            onClick={() => handleOpenTab('status')}
-          >
-            <p>Status</p>
-            <FaAngleRight />
-          </div>
-        </div>
-      )}
-
-      {isTabOpen('date') && (
-        <div className='absolute left-[220px] flex flex-col gap-4 bg-[#FFF] py-3 px-5 rounded-lg w-[300px]'>
-          <Input
-            id='from'
-            name='from_date'
-            type='date'
-            label='From'
-            onChange={(e) => handleInputChange('from_date', e.target.value)}
-          />
-          <Input
-            id='to'
-            name='to_date'
-            type='date'
-            label='To'
-            onChange={(e) => handleInputChange('to_date', e.target.value)}
-          />
+          {!isFilteredByStatus && (
+            <div
+              className='flex justify-between items-center'
+              onClick={() => handleOpenTab('status')}
+            >
+              <p>Status</p>
+              <FaAngleRight />
+            </div>
+          )}
         </div>
       )}
 
       {isTabOpen('currency') && (
-        <div className='absolute left-[220px] flex flex-col gap-6 bg-[#FFF] py-5 px-5 rounded-lg w-[300px]'>
+        <div className='absolute left-[260px] flex flex-col gap-6 bg-[#FFF] py-5 px-5 rounded-lg w-[300px]'>
           {currencies.map((el) => (
             <div key={el.label} className='flex justify-between items-center'>
               <label htmlFor={el.label}>{el.label}</label>
@@ -184,7 +176,7 @@ const FilterTransactions = ({ containerClassName, label }: FilterProps) => {
         </div>
       )}
       {isTabOpen('status') && (
-        <div className='absolute left-[220px] flex flex-col gap-6 bg-[#FFF] py-5 px-5 rounded-lg w-[300px]'>
+        <div className='absolute left-[260px] flex flex-col gap-6 bg-[#FFF] py-5 px-5 rounded-lg w-[300px]'>
           {transactionStatus.map((el) => (
             <div key={el.label} className='flex justify-between items-center'>
               <label htmlFor={el.label}>{el.label}</label>
@@ -197,6 +189,27 @@ const FilterTransactions = ({ containerClassName, label }: FilterProps) => {
                   close();
                 }}
                 checked={status === el.value}
+                type='radio'
+                className='w-5 h-5 cursor-pointer border-gray-300 text-[#EA157F] focus:ring-0 checked:bg-[#EA157F]'
+              />
+            </div>
+          ))}
+        </div>
+      )}
+      {isTabOpen('type') && (
+        <div className='absolute left-[260px] flex flex-col gap-6 bg-[#FFF] py-5 px-5 rounded-lg w-[300px]'>
+          {transactionType.map((el) => (
+            <div key={el.label} className='flex justify-between items-center'>
+              <label htmlFor={el.label}>{el.label}</label>
+              <input
+                id={el.label}
+                name={el.label}
+                value={el.value}
+                onChange={(e) => {
+                  handleInputChange('type', e.target.value);
+                  close();
+                }}
+                checked={type === el.value}
                 type='radio'
                 className='w-5 h-5 cursor-pointer border-gray-300 text-[#EA157F] focus:ring-0 checked:bg-[#EA157F]'
               />

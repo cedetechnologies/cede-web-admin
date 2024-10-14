@@ -19,17 +19,17 @@ export default function TransactionsAreaChartContainer({
 }: TransactionsAreaChartContainerProps) {
   return (
     <div
-      className='bg-white rounded-[12px] border-[0.5px] border-primary-grey w-full py-3 px-5'
+      className='bg-white rounded-[12px] border-[0.5px] flex flex-col justify-between border-primary-grey w-full py-3 px-5'
       style={{ boxShadow: '0px 1px 2px 0px #A4ACB93D' }}
     >
       <div className='flex w-full items-center justify-between mb-8'>
-        <p>{title}</p>
+        <p className='text-sm xl:text-base'>{title}</p>
         <Dropdown
           paramKey='filter'
           label='Filter by'
           options={[]}
           containerClassName='w-fit'
-          dropdownButtonClassName='w-fit !rounded-[5px] !px-2 !py-0 border-[#BDBDBD] text-tertiary-grey !text-[10px]'
+          dropdownButtonClassName='w-fit whitespace-nowrap !rounded-[5px] !px-2 !py-0 border-[#BDBDBD] text-tertiary-grey !text-[10px]'
         />
       </div>
 

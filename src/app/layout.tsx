@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { Figtree, Inter } from 'next/font/google';
+import NextTopLoader from 'nextjs-toploader';
 import * as React from 'react';
 import { Toaster } from 'react-hot-toast';
 
@@ -76,6 +77,7 @@ export default function RootLayout({
     <html className={`${figtree.variable} ${inter.variable}`}>
       <body>
         <Providers>
+          <NextTopLoader color='#6F00FF' />
           {children}
           <Toaster position='top-right' />
         </Providers>

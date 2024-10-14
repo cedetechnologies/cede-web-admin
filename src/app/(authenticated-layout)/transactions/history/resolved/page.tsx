@@ -36,6 +36,7 @@ export default function Page() {
         <FilterTransactions
           label='Filter transactions'
           containerClassName='w-fit rounded-[7.65px] py-[10.49px] px-3 border-primary-grey text-tertiary-grey text-[13px] border'
+          isFilteredByStatus
         />
         <InputSearch
           containerClassName='w-1/3 lg:w-1/2 xl:w-3/5'
