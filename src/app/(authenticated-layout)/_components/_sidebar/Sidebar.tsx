@@ -6,6 +6,7 @@ import { BsPatchCheck } from 'react-icons/bs';
 import { CiLogout } from 'react-icons/ci';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { LuUsers2 } from 'react-icons/lu';
+import { PiNotePencilBold } from 'react-icons/pi';
 import { RiHome6Fill } from 'react-icons/ri';
 import { TbChartDotsFilled } from 'react-icons/tb';
 
@@ -52,6 +53,12 @@ const sideBarLinks: SidebarLinksType[] = [
     icon: ReceiptText,
     title: 'Manage transactions',
     href: Routes.ManageTransactions,
+  },
+  {
+    id: 8,
+    icon: PiNotePencilBold,
+    title: 'Manage blogs',
+    href: Routes.Blogs,
   },
   {
     id: 4,

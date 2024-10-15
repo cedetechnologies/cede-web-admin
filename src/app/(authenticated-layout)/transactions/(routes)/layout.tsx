@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { PropsWithChildren } from 'react';
 
 import Button from '@/components/buttons/Button';
+import Dropdown from '@/components/dropdown';
 import { PaddedContainer } from '@/components/lib';
 import ActiveLink from '@/components/links/ActiveLink';
 
@@ -47,7 +48,21 @@ export default function TransactionsLayout({ children }: PropsWithChildren) {
           <ExchangeRateDisplay />
         </div>
 
-        <p className='font-semibold text-2xl'>Transactions</p>
+        <div className='flex items-start'>
+          <p className='font-semibold text-2xl'>Transactions</p>
+          <div className='w-fit -mt-3'>
+            <Dropdown
+              paramKey='accountType'
+              defaultValue='individual'
+              label='Individual'
+              options={[
+                { label: 'Individual', value: 'Individual' },
+                { label: 'Business', value: 'Business' },
+              ]}
+              dropdownButtonClassName='border-none text-sm font-medium'
+            />
+          </div>
+        </div>
 
         <div className='my-8 grid grid-cols-2 lg:grid-cols-3 gap-6'>
           <TransactionsAreaChartContainer
@@ -70,18 +85,26 @@ export default function TransactionsLayout({ children }: PropsWithChildren) {
           />
         </div>
 
-        <div className='border-primary-grey mb-8 w-fit flex items-center gap-6 border-b-2'>
-          {transactionsLinks.map((el) => (
-            <ActiveLink
-              key={el.label}
-              href={`/transactions${el.route && `/${el.route}`}`}
-              className='-mb-[2px] cursor-pointer border-b-2 text-light-grey border-transparent p-3 font-medium'
-              activeClassName='border-primary-pink text-primary-black'
-              index={el.index}
-            >
-              {el.label}
-            </ActiveLink>
-          ))}
+        <div className='flex justify-between items-start'>
+          <div className='border-primary-grey mb-8 w-fit flex items-center gap-6 border-b-2'>
+            {transactionsLinks.map((el) => (
+              <ActiveLink
+                key={el.label}
+                href={`/transactions${el.route && `/${el.route}`}`}
+                className='-mb-[2px] cursor-pointer border-b-2 text-light-grey border-transparent p-3 font-medium'
+                activeClassName='border-primary-pink text-primary-black'
+                index={el.index}
+              >
+                {el.label}
+              </ActiveLink>
+            ))}
+          </div>
+          <Link
+            href='/transactions/history'
+            className='font-semibold font-figtree text-sm text-primary'
+          >
+            SEE MORE
+          </Link>
         </div>
 
         {children}

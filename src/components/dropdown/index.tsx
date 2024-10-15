@@ -12,6 +12,7 @@ import {
   useState,
 } from 'react';
 import { IconType } from 'react-icons';
+import { IoCheckmarkCircle } from 'react-icons/io5';
 import { PiCaretDownBold } from 'react-icons/pi';
 
 import { cn } from '@/lib/utils';
@@ -89,6 +90,7 @@ export interface DropdownProps extends SelectHTMLAttributes<HTMLSelectElement> {
   handleChange?: () => void;
   defaultValue?: string;
   dropdownButtonClassName?: string;
+  showCircle?: boolean;
 }
 
 const Dropdown = ({
@@ -104,6 +106,7 @@ const Dropdown = ({
   handleChange,
   defaultValue,
   dropdownButtonClassName,
+  showCircle,
 }: DropdownProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
@@ -274,6 +277,9 @@ const Dropdown = ({
                 ])}
               >
                 {option.render ?? option.label}
+                {option.value === paramValue && showCircle && (
+                  <IoCheckmarkCircle color='#7F56D9' size={20} />
+                )}
               </button>
             ))}
           </motion.div>

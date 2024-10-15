@@ -43,7 +43,7 @@ export default function ActivityTableItem() {
         </p>
       </td>
       <td>
-        <p className='font-medium min-w-[130px]'>
+        <p className='font-medium imin-w-[130px]'>
           2001:0db8:85a3:0000:0000:8a2e:0370:7334
         </p>
       </td>

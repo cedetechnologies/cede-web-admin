@@ -3,7 +3,7 @@ import { RxCaretRight } from 'react-icons/rx';
 
 export default function ProfileLink() {
   return (
-    <Link href='/profile'>
+    <Link href='/settings'>
       <div className='flex w-full items-center justify-between gap-4'>
         <div className='flex flex-col gap-1'>
           <p className='font-medium text-sm'>Kayla Store</p>

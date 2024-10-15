@@ -2,23 +2,23 @@ import { useFormik } from 'formik';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 
-import {
-  filterInitialValues,
-  filterValidationSchema,
-} from '@/components/filter/utils/filterValidationSchema';
+import { useQueryParams } from '@/hooks/useQueryParams';
+
+import { filterInitialValues } from '@/components/filter/utils/filterValidationSchema';
 import { FilterValues } from '@/components/filter/utils/types';
 
-const useFilter = () => {
+type Tab = 'currency' | 'date' | 'type' | 'currency' | '' | 'status';
+
+const useFilterTransactions = () => {
   const [show, setShow] = useState(false);
-  const [showDate, setShowDate] = useState(false);
-  const [showStatus, setShowStatus] = useState(false);
-  const [showCurrency, setShowCurrency] = useState(false);
+  const [openTab, setOpenTab] = useState<Tab>('');
   const searchParams = useSearchParams();
   const router = useRouter();
 
+  const { removeQueryParam } = useQueryParams();
+
   const formik = useFormik<FilterValues>({
     initialValues: filterInitialValues,
-    validationSchema: filterValidationSchema,
     onSubmit: () => {
       // Submit logic
     },
@@ -63,7 +63,7 @@ const useFilter = () => {
 
   useEffect(() => {
     if (formik.values.from_date && formik.values.to_date) {
-      setShowDate(false);
+      close();
       setShow(false);
     }
   }, [formik.values.from_date, formik.values.to_date]);
@@ -81,21 +81,29 @@ const useFilter = () => {
   const toDate = searchParams.get('to_date');
   const currency = searchParams.get('currency');
   const status = searchParams.get('status');
+  const type = searchParams.get('type');
 
   const handleRefresh = () => {
-    window.location.reload(); // Refreshes the current page
+    removeQueryParam(['currency', 'status', 'type', 'date']);
   };
+
+  function close() {
+    setShow(false);
+    setOpenTab('');
+  }
+
+  function handleOpenTab(tab: Tab) {
+    setOpenTab(tab);
+  }
+
+  function isTabOpen(tab: string) {
+    return openTab === tab;
+  }
 
   return {
     formik,
     show,
-    showDate,
-    showStatus,
-    showCurrency,
     setShow,
-    setShowDate,
-    setShowStatus,
-    setShowCurrency,
     handleInputChange,
     removeFilter,
     updateQueryParams,
@@ -106,7 +114,11 @@ const useFilter = () => {
     currency,
     status,
     handleRefresh,
+    isTabOpen,
+    close,
+    handleOpenTab,
+    type,
   };
 };
 
-export default useFilter;
+export default useFilterTransactions;

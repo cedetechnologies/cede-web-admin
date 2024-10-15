@@ -8,6 +8,7 @@ import storage from '@/store/customStorage';
 import {
   BLACKLIST_USER_REDUCER_PATH,
   BUSINESS_VERIFICATION_REDUCER_PATH,
+  DELETE_BLOG_REDUCER_PATH,
   EDIT_EXCHANGE_RATE_REDUCER_PATH,
   GLOBAL_API_REDUCER_PATH,
   LOGIN_REDUCER_PATH,
@@ -18,6 +19,7 @@ import {
 } from '@/constant/appConstants';
 import { blacklistReducer } from '@/slices/blacklistUser';
 import { businessVerificationReducer } from '@/slices/businessVerificationSlice';
+import { deleteBlogReducer } from '@/slices/deleteBlogSlice';
 import { editExchangeRateReducer } from '@/slices/editExchangeRateSlice';
 import { loginReducer } from '@/slices/loginSlice';
 import { profileSettingsReducer } from '@/slices/profleSettingsSlice';
@@ -38,6 +40,7 @@ const persistConfig = {
     BUSINESS_VERIFICATION_REDUCER_PATH,
     PROFILE_SETTINGS_REDUCER_PATH,
     TEAM_SETTINGS_REDUCER_PATH,
+    DELETE_BLOG_REDUCER_PATH,
   ],
 };
 
@@ -51,6 +54,7 @@ const rootReducer = combineReducers({
   [BUSINESS_VERIFICATION_REDUCER_PATH]: businessVerificationReducer,
   [PROFILE_SETTINGS_REDUCER_PATH]: profileSettingsReducer,
   [TEAM_SETTINGS_REDUCER_PATH]: teamSettingsReducer,
+  [DELETE_BLOG_REDUCER_PATH]: deleteBlogReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
