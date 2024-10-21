@@ -1,7 +1,6 @@
 export const siteConfig = {
   title: 'Cede Admin',
-  description:
-    'A starter for Next.js, Tailwind CSS, and TypeScript with Absolute Import, Seo, Link component, pre-configured with Husky',
+  description: 'Your Gateway to Global Financial Solutions',
   /** Without additional '/' on the end, e.g. https://theodorusclarence.com */
   url: 'https://tsnext-tw.thcl.dev',
 };
