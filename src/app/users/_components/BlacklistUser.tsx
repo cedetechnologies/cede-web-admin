@@ -6,26 +6,25 @@ import { IoMdClose } from 'react-icons/io';
 
 import Button from '@/components/buttons/Button';
 import IconButton from '@/components/buttons/IconButton';
+import { MultiLine } from '@/components/input';
 import { ModalProps } from '@/components/modal';
 
-import { useAppDispatch } from '@/store';
-
 import { multiStepVariants } from '@/app/(authentication-layout)/login/_utils/loginVariants';
-import {
-  BLACKLIST_SUCCESS_STAGE,
-  setBlacklistUserStage,
-} from '@/slices/blacklistUser';
+import useBlacklistUser, {
+  BlacklistUserId,
+} from '@/app/users/_utils/useBlacklistUser';
 
 type Props = ModalProps & {
   isMultiple: boolean;
 };
 
 export default function BlacklistUser({ isMultiple, ...props }: Props) {
-  const dispatch = useAppDispatch();
+  const { formik, getInputProps } = useBlacklistUser();
 
   return (
-    <motion.div
+    <motion.form
       variants={multiStepVariants}
+      onSubmit={formik.handleSubmit}
       initial='initial'
       exit='exit'
       animate='animate'
@@ -53,13 +52,21 @@ export default function BlacklistUser({ isMultiple, ...props }: Props) {
             until you undo this action.
           </p>
         </div>
+
+        <div className='mt-5 w-full'>
+          <MultiLine
+            label='Reason for blacklist'
+            id={BlacklistUserId.Reason}
+            {...getInputProps(BlacklistUserId.Reason)}
+            rows={5}
+          />
+        </div>
       </div>
 
       <Button
-        onClick={() => {
-          dispatch(setBlacklistUserStage(BLACKLIST_SUCCESS_STAGE));
-        }}
+        type='submit'
         variant='danger'
+        disabled={!formik.isValid}
         className='text-center justify-center rounded-[8px] py-4 w-full font-semibold mt-10'
       >
         Yes, blacklist
@@ -72,6 +79,6 @@ export default function BlacklistUser({ isMultiple, ...props }: Props) {
       >
         Cancel
       </Button>
-    </motion.div>
+    </motion.form>
   );
 }

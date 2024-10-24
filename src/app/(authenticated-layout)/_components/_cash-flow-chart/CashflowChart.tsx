@@ -11,63 +11,63 @@ import {
 const data = [
   {
     month: 'JAN',
-    uv: 4000,
-    pv: 2400,
+    Outflow: 4000,
+    Inflow: 2400,
   },
   {
     month: 'FEB',
-    uv: 3000,
-    pv: 1398,
+    Outflow: 3000,
+    Inflow: 1398,
   },
   {
     month: 'MAR',
-    uv: 2000,
-    pv: 9800,
+    Outflow: 2000,
+    Inflow: 9800,
   },
   {
     month: 'APR',
-    uv: 2780,
-    pv: 3908,
+    Outflow: 2780,
+    Inflow: 3908,
   },
   {
     month: 'MAY',
-    uv: 1890,
-    pv: 4800,
+    Outflow: 1890,
+    Inflow: 4800,
   },
   {
     month: 'JUN',
-    uv: 2390,
-    pv: 3800,
+    Outflow: 2390,
+    Inflow: 3800,
   },
   {
     month: 'JUL',
-    uv: 5490,
-    pv: 5300,
+    Outflow: 5490,
+    Inflow: 5300,
   },
   {
     month: 'AUG',
-    uv: 11490,
-    pv: 8300,
+    Outflow: 11490,
+    Inflow: 8300,
   },
   {
     month: 'SEP',
-    uv: 3490,
-    pv: 4300,
+    Outflow: 3490,
+    Inflow: 4300,
   },
   {
     month: 'OCT',
-    uv: 2490,
-    pv: 10300,
+    Outflow: 2490,
+    Inflow: 10300,
   },
   {
     month: 'NOV',
-    uv: 5490,
-    pv: 7300,
+    Outflow: 5490,
+    Inflow: 7300,
   },
   {
     month: 'DEC',
-    uv: 1000,
-    pv: 6300,
+    Outflow: 1000,
+    Inflow: 6300,
   },
 ];
 
@@ -93,14 +93,14 @@ export default function CashflowChart() {
         />
         <Tooltip />
         <Bar
-          dataKey='pv'
+          dataKey='Inflow'
           fill='#6F00FF'
           barSize={17}
           radius={2}
           activeBar={<Rectangle fill='#a467f4' stroke='blue' />}
         />
         <Bar
-          dataKey='uv'
+          dataKey='Outflow'
           fill='#EA157F'
           barSize={17}
           radius={2}

@@ -35,7 +35,7 @@ export default function Page() {
       <div className='flex items-center justify-between gap-[10px] mb-8'>
         <FilterTransactions
           label='Filter transactions'
-          containerClassName='w-fit rounded-[7.65px] py-[10.49px] px-3 border-primary-grey text-tertiary-grey text-[13px] border'
+          containerClassName='w-fit rounded-[7.65px] py-[10.49px] px-3 border-primary-grey text-tertiary-grey !text-[13px] border'
         />
         <InputSearch
           containerClassName='w-1/3 lg:w-1/2 xl:w-3/5'
@@ -43,7 +43,7 @@ export default function Page() {
         />
         <SortTransactions
           label='Sort transactions'
-          containerClassName='w-fit rounded-[7.65px] py-[10.49px] px-3 border-primary-grey text-tertiary-grey text-[13px] border'
+          containerClassName='w-fit rounded-[7.65px] py-[10.49px] px-3 border-primary-grey text-tertiary-grey !text-[13px] border'
         />
         <IconButton
           icon={BsDownload}

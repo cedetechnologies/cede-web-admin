@@ -1,6 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { BsIncognito } from 'react-icons/bs';
 import { BsDownload } from 'react-icons/bs';
@@ -23,12 +22,6 @@ import UsersStatCard from '@/app/users/_components/UsersStatCard';
 import UserTableItem from '@/app/users/_components/UserTableItem';
 import { userArr } from '@/app/users/_utils/constants';
 
-const filterOptions = [
-  { label: 'All', value: '' },
-  { label: 'Active', value: 'active' },
-  { label: 'Inactive', value: 'inactive' },
-];
-
 const tableHeaders = [
   'User ID',
   'Name',
@@ -43,7 +36,6 @@ export default function Page() {
   const [currentUser, setCurrentUser] = useState<
     undefined | (typeof userArr)[number]
   >(undefined);
-  const router = useRouter();
 
   const {
     isOpen: isBlacklistOpen,
@@ -53,72 +45,38 @@ export default function Page() {
 
   const permitModal = useDisclosure();
 
-  // function isSelectedUsersEmpty() {
-  //   return selectedUsers.length === 0;
-  // }
-
-  // function handleIndividualSelectChange(user: { id: string; name: string }) {
-  //   const userIndex = selectedUsers.findIndex((el) => el.id === user.id);
-
-  //   if (userIndex > -1) {
-  //     const newArr = [...selectedUsers];
-  //     newArr.splice(userIndex, 1);
-  //     setSelectedUsers(newArr);
-  //   } else setSelectedUsers([...selectedUsers, user]);
-  // }
-
-  // function checkIfArraysEqual() {
-  //   let isEqual = true;
-
-  //   if (selectedUsers.length === 0) return false;
-
-  //   for (let i = 0; i < userArr.length; i++) {
-  //     if (!selectedUsers.includes(userArr[i])) {
-  //       isEqual = false;
-  //       break;
-  //     }
-  //   }
-
-  //   return isEqual;
-  // }
-
-  // function handleAllUsersSelectChange() {
-  //   if (checkIfArraysEqual()) setSelectedUsers([]);
-  //   else setSelectedUsers(userArr);
-  // }
-
   return (
     <PaddedContainer isScrollable className=''>
-      <div className='w-fit'>
-        <Dropdown
-          paramKey='type'
-          defaultValue='individual'
-          label='Individual'
-          options={[
-            { label: 'Individual', value: 'Individual' },
-            { label: 'Business', value: 'Business' },
-          ]}
-          dropdownButtonClassName='border-none text-sm font-medium'
-        />
+      <div className='flex items-center gap-2'>
+        <div className='w-fit'>
+          <Dropdown
+            paramKey='type'
+            defaultValue='individual'
+            label='Individual'
+            options={[
+              { label: 'Individual', value: 'Individual' },
+              { label: 'Business', value: 'Business' },
+            ]}
+            dropdownButtonClassName='border-none text-sm font-medium'
+          />
+        </div>
+        <Button
+          variant='ghost'
+          leftIcon={BsIncognito}
+          className='text-sm font-medium'
+          classNames={{ leftIcon: 'text-primary-red mr-2' }}
+        >
+          Blacklisted users
+        </Button>
       </div>
 
       <div className='mt-5 mb-20 grid grid-cols-2 lg:grid-cols-3 gap-6'>
         <UsersStatCard
-          title='Total No. of Users'
+          title='Total No. of Blacklisted Users'
           amount='43,132'
           lastUpdated='25 mins ago'
-          titleClassName='text-primary'
-          containerClassName='border-[#D6B6FF]'
-        />
-        <UsersStatCard
-          title='Active Users'
-          amount='32,900'
-          lastUpdated='25 mins ago'
-        />
-        <UsersStatCard
-          title='Inactive Users'
-          amount='10,132'
-          lastUpdated='25 mins ago'
+          titleClassName='text-black'
+          containerClassName='border-[#949494]'
         />
       </div>
 
@@ -128,24 +86,8 @@ export default function Page() {
             containerClassName='w-[300px]'
             placeholder='Search by name, user ID, email'
           />
-          <Button
-            variant='ghost'
-            leftIcon={BsIncognito}
-            className='text-sm font-medium'
-            classNames={{ leftIcon: 'text-primary-red mr-2' }}
-            onClick={() => router.push('/users/blacklisted')}
-          >
-            Blacklisted users
-          </Button>
         </div>
         <div className='flex items-center gap-6'>
-          <Dropdown
-            paramKey='filter'
-            label='Filter by'
-            options={filterOptions}
-            containerClassName='w-fit'
-            dropdownButtonClassName='w-fit rounded-[7.65px] py-[10.49px] px-3 border-primary-grey text-tertiary-grey !text-[13px]'
-          />
           <SortUsers
             label='Sort by'
             containerClassName='w-fit rounded-[7.65px] py-[10.49px] px-3 border-primary-grey text-tertiary-grey font-medium text-[13px] border'
@@ -166,6 +108,7 @@ export default function Page() {
               openBlacklist={openBlacklist}
               setCurrentUser={setCurrentUser}
               openPermit={permitModal.open}
+              isBlacklisted
             />
           ))}
         </TableContainer>
@@ -183,13 +126,6 @@ export default function Page() {
         handleOpenModal={permitModal.open}
         handleCloseModal={permitModal.close}
       />
-
-      {/* <BlacklistUserModalContainer
-        users={selectedUsers}
-        isOpen={isBlacklistMultipleOpen}
-        handleOpenModal={openBlacklistMultiple}
-        handleCloseModal={closeBlacklistMultiple}
-      /> */}
     </PaddedContainer>
   );
 }

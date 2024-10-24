@@ -32,11 +32,11 @@ export default function CashflowChartContainer() {
         <div className='flex flex-row lg:flex-col justify-center gap-9'>
           <div className='flex flex-col gap-[9px]'>
             <div className='w-9 h-5 rounded-[5px] bg-primary' />
-            <p className='text-sm text-tertiary-grey'>IN FLOW</p>
+            <p className='text-sm text-tertiary-grey'>Inflow</p>
           </div>
           <div className='flex flex-col gap-[9px]'>
             <div className='w-9 h-5 rounded-[5px] bg-primary-pink' />
-            <p className='text-sm text-tertiary-grey'>OUT FLOW</p>
+            <p className='text-sm text-tertiary-grey'>Outflow</p>
           </div>
         </div>
       </div>

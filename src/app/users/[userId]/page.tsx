@@ -1,17 +1,17 @@
 'use client';
 
 import { BsDownload, BsIncognito, BsPeopleFill } from 'react-icons/bs';
-import { HiSortDescending } from 'react-icons/hi';
 
 import useDisclosure from '@/hooks/useDisclosure';
 
 import Button from '@/components/buttons/Button';
 import IconButton from '@/components/buttons/IconButton';
-import Dropdown from '@/components/dropdown';
 import { InputSearch } from '@/components/input';
 import { PaddedContainer } from '@/components/lib';
 import TableContainer from '@/components/table';
 
+import FilterTransactions from '@/app/(authenticated-layout)/transactions/_components/FilterTransactions';
+import SortTransactions from '@/app/(authenticated-layout)/transactions/_components/SortTransactions';
 import BlacklistUserModalContainer from '@/app/users/_components/BlacklistUserModalContainer';
 import UserStatCard from '@/app/users/[userId]/_components/UserStatCard';
 import UserTransactionHistoryTableItem from '@/app/users/[userId]/_components/UserTransactionHistoryTableItem';
@@ -57,6 +57,16 @@ export default function Page() {
         <UserStatCard title='No. of transactions' amount='20' />
       </div>
 
+      <div className='mb-12 border rounded-[8px] py-3 px-5 w-full border-[#FFBDC9] flex flex-col gap-2'>
+        <p className='flex items-center gap-[10px] text-sm'>
+          <BsIncognito className='text-primary-red text-lg' /> Reason for
+          blacklisting
+        </p>
+        <p className='text-primary-red font-semibold'>
+          Suspicious transactions
+        </p>
+      </div>
+
       <div>
         <p className='font-semibold text-xl'>Transaction History</p>
 
@@ -67,20 +77,13 @@ export default function Page() {
               placeholder='Search by name, user ID, email'
             />
             <div className='flex items-center gap-6'>
-              <Dropdown
-                paramKey='filter'
+              <FilterTransactions
                 label='Filter by'
-                options={[]}
-                containerClassName='w-fit'
-                dropdownButtonClassName='w-fit rounded-[7.65px] bg-white py-[10.49px] px-3 border-primary-grey text-tertiary-grey text-[13px]'
+                containerClassName='w-fit rounded-[7.65px] py-[10.49px] px-3 border-primary-grey text-tertiary-grey !text-[13px] border'
               />
-              <Dropdown
-                paramKey='sort'
-                leftIcon={HiSortDescending}
+              <SortTransactions
                 label='Sort by'
-                options={[]}
-                containerClassName='w-fit'
-                dropdownButtonClassName='w-fit rounded-[7.65px] bg-white py-[10.49px] px-3 border-primary-grey text-tertiary-grey text-[13px]'
+                containerClassName='w-fit rounded-[7.65px] py-[10.49px] px-3 border-primary-grey text-tertiary-grey !text-[13px] border'
               />
             </div>
           </div>
